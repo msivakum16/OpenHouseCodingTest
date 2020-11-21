@@ -1,0 +1,10 @@
+.title{
+	text-align:center;
+	background: linear-gradient(45deg, blue, green, blue);
+	color:#fff;
+}
+
+.card{
+	margin:20px;
+}
+

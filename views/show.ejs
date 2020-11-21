@@ -1,0 +1,48 @@
+<%- include("./partials/header") %>
+
+
+<div class="title jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">FIND</h1>
+    <p class="lead">Homes Like a Pro</p>
+  </div>
+</div>
+
+<div class="container">
+	<div class="row">
+		<% communities.forEach((item) => { %>
+		<div class="col-md-6 col-lg-4">
+			 <div class="card">	
+				<img class="card-img-top" src="<%= item["url"] %> " width=300 height=250 
+				onerror="<%this.onerror=null;%>
+				<% this.src="https://envision.design/wp-content/uploads/2019/12/image-coming-soon.jpg"%>">
+				<div class="card-body">
+					<p class="card-text"><h3>
+					<%=item["name"] %></h3></p>
+					<% if(item["homeAvg"] === 0){ %>
+						<p class="card-text">No Listings Yet</p>
+					<% } else { %>
+						<p class="card-text">Average Home Price : CAD <%= item["homeAvg"].toLocaleString() %></p>
+					<% } %>
+					
+  				</div>
+			</div>
+		</div>
+		<% }) %>
+	</div>
+</div>
+
+<script>
+	function myfunc(){
+		this.onerror=null;
+		this.src='http://example.com/existent-image.jpg'
+	}
+</script>
+
+
+
+<%- include("./partials/footer") %>
+
+
+
+
