@@ -24,6 +24,11 @@ let avg: number = 0;
 const app = express();
 app.set("view engine","ejs");
 app.use(express.static("public"));
+/*app.use(function (err, req, res, next) {
+  console.error(err.stack)
+  res.status(500).send('Something broke!')
+})*/
+
 
 let one = "https://a18fda49-215e-47d1-9dc6-c6136a04a33a.mock.pstmn.io/communities";
 let two = "https://a18fda49-215e-47d1-9dc6-c6136a04a33a.mock.pstmn.io/homes"
@@ -31,7 +36,7 @@ let two = "https://a18fda49-215e-47d1-9dc6-c6136a04a33a.mock.pstmn.io/homes"
 const requestOne = axios.get(one);
 const requestTwo = axios.get(two);
 
-app.get("/show", async (req,res) => {
+app.get("/show", async (req,res,next) => {
 	let dataArray: commData[] = [];
 	await axios.all([requestOne, requestTwo])
 	.then((axios.spread((...responses) => {
@@ -73,7 +78,7 @@ app.get("/show", async (req,res) => {
 		
 		res.render("show",{communities:arr});
 	})))
-	.catch(error => console.log(error));
+	.catch(err=>console.log(err));
 });
 
 

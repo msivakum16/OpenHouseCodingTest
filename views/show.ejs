@@ -13,12 +13,12 @@
 		<% communities.forEach((item) => { %>
 		<div class="col-md-6 col-lg-4">
 			 <div class="card">	
-				<img class="card-img-top" src="<%= item["url"] %> " width=300 height=250 
+				<img class="card-img-top" src="<%= item["url"] %> " alt="Image coming soon" title="Image" width=300 height=250 
 				onerror="<%this.onerror=null;%>
 				<% this.src="https://envision.design/wp-content/uploads/2019/12/image-coming-soon.jpg"%>">
 				<div class="card-body">
-					<p class="card-text"><h3>
-					<%=item["name"] %></h3></p>
+					<p class="card-text"><strong>
+					<%=item["name"] %></strong></p>
 					<% if(item["homeAvg"] === 0){ %>
 						<p class="card-text">No Listings Yet</p>
 					<% } else { %>

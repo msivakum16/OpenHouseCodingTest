@@ -27,11 +27,15 @@ let avg = 0;
 const app = express_1.default();
 app.set("view engine", "ejs");
 app.use(express_1.default.static("public"));
+/*app.use(function (err, req, res, next) {
+  console.error(err.stack)
+  res.status(500).send('Something broke!')
+})*/
 let one = "https://a18fda49-215e-47d1-9dc6-c6136a04a33a.mock.pstmn.io/communities";
 let two = "https://a18fda49-215e-47d1-9dc6-c6136a04a33a.mock.pstmn.io/homes";
 const requestOne = axios_1.default.get(one);
 const requestTwo = axios_1.default.get(two);
-app.get("/show", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+app.get("/show", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     let dataArray = [];
     yield axios_1.default.all([requestOne, requestTwo])
         .then((axios_1.default.spread((...responses) => {
@@ -72,7 +76,7 @@ app.get("/show", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         let arr = sortArr(dataArray);
         res.render("show", { communities: arr });
     })))
-        .catch(error => console.log(error));
+        .catch(err => console.log(err));
 }));
 app.get("/show", (req, res) => {
 });
